@@ -6,8 +6,7 @@
 | -----------------------| ------ | ------------------------|
 | nickname               | string | null: false             |
 | email                  | string | null: false unique: true|
-| encrypted_password     | string | null: false unique: true|
-| password               | string | null: false             |
+| encrypted_password     | string | null: false             |
 | first_name             | string | null: false             |
 | last_name              | string | null: false             |
 | first_name_kana        | string | null: false             |
@@ -31,7 +30,7 @@ has_many   :credit_cards
 | address            | string     | null: false                        |
 | building           | string     |                                    |
 | phone              | string     | null: false                        |
-| credit_card       | references | null: false, foreign_key: true     |
+| credit_card       | references  | null: false, foreign_key: true     |
 
 ### Association
 
@@ -62,11 +61,11 @@ has_one    :address
 | name                | string     | null: false,                   |
 | about_item          | text       | null: false,                   |
 | category_id         | integer    | null: false,                   |
-| condition _id       | integer    | null: false,                   |
+| condition_id        | integer    | null: false,                   |
 | shipping_cost_id    | integer    | null: false,                   |
 | shipping_area_id    | integer    | null: false,                   |
 | delivery_days_id    | integer    | null: false,                   |
-| price               | integer    | null: false, foreign_key: true |
+| price               | integer    | null: false,                   |
 | user                | references | null: false, foreign_key: true |
 
 ### Association
