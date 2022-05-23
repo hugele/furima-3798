@@ -6,6 +6,7 @@
 | -----------------------| ------ | ------------------------|
 | nickname               | string | null: false             |
 | email                  | string | null: false unique: true|
+| encrypted_password     | string | null: false unique: true|
 | password               | string | null: false             |
 | first_name             | string | null: false             |
 | last_name              | string | null: false             |
@@ -16,10 +17,10 @@
 ### Association
 
 has_many   :items
-has_many   :credit_card
+has_many   :credit_cards
 
 
-## address テーブル
+## addresses テーブル
 
 | Column             | Type       | Options                            |
 | -------------------| ------ ----| -----------------------------------|
@@ -30,7 +31,7 @@ has_many   :credit_card
 | address            | string     | null: false                        |
 | building           | string     |                                    |
 | phone              | string     | null: false                        |
-| credit_cards       | references | null: false, foreign_key: true     |
+| credit_card       | references | null: false, foreign_key: true     |
 
 ### Association
 
@@ -39,7 +40,7 @@ belongs_to_active_hash :shipping_area
 
 
 
-## credit_card テーブル
+## credit_cards テーブル
 
 | Column    | Type       | Options                               |
 | --------- | ---------- | ------------------------------------- |
@@ -50,7 +51,7 @@ belongs_to_active_hash :shipping_area
 ### Association
 
 belongs_to :user
-belongs_to :items
+belongs_to :item
 has_one    :address
 
 
@@ -58,13 +59,13 @@ has_one    :address
 
 | Column              | Type       | Options                        |
 | --------------------| ---------- | ------------------------------ |
-| text                | string     |                                |
-| abot_item           | tex        | null: false, foreign_key: true |
-| category_id         | tex        | null: false, foreign_key: true |
-| condition _id       | integer    | null: false, foreign_key: true |
-| shipping_cost_id    | integer    | null: false, foreign_key: true |
-| shipping_area_id    | integer    | null: false, foreign_key: true |
-| delivery_days_id    | integer    | null: false, foreign_key: true |
+| name                | string     | null: false,                   |
+| about_item          | text       | null: false,                   |
+| category_id         | integer    | null: false,                   |
+| condition _id       | integer    | null: false,                   |
+| shipping_cost_id    | integer    | null: false,                   |
+| shipping_area_id    | integer    | null: false,                   |
+| delivery_days_id    | integer    | null: false,                   |
 | price               | integer    | null: false, foreign_key: true |
 | user                | references | null: false, foreign_key: true |
 
@@ -72,7 +73,7 @@ has_one    :address
 
 - has_one_attached  :image
 - belongs_to        :user
-  has_one   　　　　 :purchase
+  has_one   　　　　 :credit_card
 　belongs_to_active_hash :category
   belongs_to_active_hash :day
   belongs_to_active_hash :derively_fee
