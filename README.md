@@ -22,20 +22,20 @@ belongs_to :address
 
 ## address テーブル
 
-| Column        | Type   | Options                            |
-| --------------| ------ | -----------------------------------|
-| post_number   | string | null: false                        |
-| prefecture    | string | null: false                        |
-| city          | string | null: false                        |
-| street        | string | null: false                        |
-| address       | string | null: false                        |
-| building      | string | null: false                        |
-| phone         | string | null: false                        |
-| user_id       | integer| null: false, foreign_key: true     |
+| Column             | Type   | Options                            |
+| -------------------| ------ | -----------------------------------|
+| post_number        | string | null: false                        |
+| prefecture         | string | null: false                        |
+| city               | string | null: false                        |
+| street             | string | null: false                        |
+| address            | string | null: false                        |
+| building           | string | null: false                        |
+| phone              | string | null: false                        |
+| credit_cards_id    | integer| null: false, foreign_key: true     |
 
 ### Association
 
-belongs_to :user
+belongs_to :item
 
 
 ## credit_card テーブル
@@ -50,22 +50,20 @@ belongs_to :user
 
 belongs_to :user
 belongs_to :item
-
+belongs_to :address
 
 ## items テーブル
 
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| text             | string     |                                |
-| abot_item        | string     | null: false, foreign_key: true |
-| condition        | integer    | null: false, foreign_key: true |
-| shipping_cost    | integer    | null: false, foreign_key: true |
-| shipping_area    | integer    | null: false, foreign_key: true |
-| delivery_days    | integer    | null: false, foreign_key: true |
-| price            | integer    | null: false, foreign_key: true |
-| user_id          | references | null: false, foreign_key: true |
-| catgory_id       | references | null: false, foreign_key: true |
-| brand_id         | references |              foreign_key: true |
+| Column              | Type       | Options                        |
+| --------------------| ---------- | ------------------------------ |
+| text                | string     |                                |
+| abot_item           | tex        | null: false, foreign_key: true |
+| condition _id       | integer    | null: false, foreign_key: true |
+| shipping_cost_id    | integer    | null: false, foreign_key: true |
+| shipping_area_id    | integer    | null: false, foreign_key: true |
+| delivery_days_id    | integer    | null: false, foreign_key: true |
+| price               | integer    | null: false, foreign_key: true |
+| user_id             | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -82,16 +80,4 @@ belongs_to :item
 
 belongs_to :item   
 
-  ## category テーブル
-
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| name             | string     | null: false, foreign_key: true |
-
-has_many :itemes 
-
-## brand テーブル
-
-| Column           | Type       | Options                        |
-| ---------------- | ---------- | ------------------------------ |
-| name             | string     |         foreign_key: true      |
+ 
