@@ -29,7 +29,7 @@ has_many   :credit_cards
 | address            | string     | null: false                        |
 | building           | string     |                                    |
 | phone              | string     | null: false                        |
-| credit_card       | references  | null: false, foreign_key: true     |
+| credit_card        | references  | null: false, foreign_key: true     |
 
 ### Association
 
