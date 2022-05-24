@@ -13,7 +13,7 @@ class User < ApplicationRecord
           validates :birthday
         end
       
-        validates :email, presence: true, format: { with: /\A\S+@\S+\.\S+\z/, message: "can't be blank" }
+        
         validates :password, format: { with: /\A[a-z0-9]+\z/i, message: 'Include both letters and numbers' }, allow_nil: true
       
         # 本人情報確認

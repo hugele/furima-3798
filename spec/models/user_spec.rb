@@ -96,19 +96,19 @@ RSpec.describe User, type: :model do
   end
 
   it '苗字のフリガナは平仮名は使えない' do
-    @user.first_name_kana = 'たなか'
+    @user.first_name_kana = 'やまだ'
     @user.valid?
     expect(@user.errors.full_messages).to include('First name kana Full-width katakana characters')
   end
 
   it '苗字のフリガナは漢字は使えない' do
-    @user.first_name_kana = '田中'
+    @user.first_name_kana = '山田'
     @user.valid?
     expect(@user.errors.full_messages).to include('First name kana Full-width katakana characters')
   end
 
   it '苗字のフリガナは英語は使えない' do
-    @user.first_name_kana = 'tanaka'
+    @user.first_name_kana = 'yamada'
     @user.valid?
     expect(@user.errors.full_messages).to include('First name kana Full-width katakana characters')
   end
