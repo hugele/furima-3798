@@ -24,9 +24,8 @@ has_many   :credit_cards
 | Column             | Type       | Options                            |
 | -------------------| ------ ----| -----------------------------------|
 | post_number        | string     | null: false                        |
-| shipping_area_id   | string     | null: false                        |
+| shipping_area_id   | integer    | null: false                        |
 | city               | string     | null: false                        |
-| street             | string     | null: false                        |
 | address            | string     | null: false                        |
 | building           | string     |                                    |
 | phone              | string     | null: false                        |
