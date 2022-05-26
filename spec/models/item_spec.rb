@@ -4,7 +4,7 @@ RSpec.describe Item, type: :model do
   describe '#create' do
     before do
       @item = FactoryBot.build(:item)
-      @item.image = fixture_file_upload('public/images/test_image.png')
+      
     end
 
   describe '商品出品機能' do
@@ -76,15 +76,10 @@ RSpec.describe Item, type: :model do
     end
 
     it '価格が9999999円以上だと登録できない' do
-      @item.price = 10000000
+      @item.price = 10*7
       @item.valid?
+      # binding.pry
       expect(@item.errors.full_messages).to include('Price Out of setting range')
-    end
-
-    it '価格についての情報がないと登録できない' do
-      @item.price = nil
-      @item.valid?
-      expect(@item.errors.full_messages).to include("Price can't be blank")
     end
 
     it '販売価格は半角数字以外では登録できない' do
@@ -92,6 +87,13 @@ RSpec.describe Item, type: :model do
       @item.valid?
       expect(@item.errors.full_messages).to include('Price Out of setting range')
     end
+
+    it 'ユーザーが紐付いていなければ投稿できない' do
+      @item.user = nil
+      @item.valid?
+      expect(@item.errors.full_messages).to include('User must exist')
+    end
+
    end
   end
 end
