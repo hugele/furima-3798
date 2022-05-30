@@ -10,7 +10,6 @@ class CreditCardsController < ApplicationController
 
   def create
     @credit_card_address = CreditCardAddress.new(credit_card_params)
-    # binding.pry
     if @credit_card_address.valid?
       pay_item
       @credit_card_address.save

@@ -17,8 +17,14 @@ RSpec.describe CreditCardAddress, type: :model do
     it '必須項目を入力した上で購入ができる' do
       expect(@credit_card_address).to  be_valid
     end
+
+  it "建物名が空の場合でも保存できること" do
+    @credit_card_address.building = ''
+    @credit_card_address.valid?
+    expect(@credit_card_address).to be_valid
    end
-  end
+ end
+end
    context '商品購入ができないとき' do
     it '郵便番号がないと登録できない' do
       @credit_card_address.post_number = nil
@@ -63,6 +69,18 @@ RSpec.describe CreditCardAddress, type: :model do
       expect(@credit_card_address.errors.full_messages).to include("Phone is invalid")
     end
 
+    it '電話番号が9桁以下の数値のみでなければ保存できないこと' do
+      @credit_card_address.phone = '０００００００００'
+      @credit_card_address.valid?
+      expect(@credit_card_address.errors.full_messages).to include("Phone is invalid")
+    end
+
+    it '電話番号が12桁以上の数値のみでなければ保存できないこと' do
+      @credit_card_address.phone = '００００００００００'
+      @credit_card_address.valid?
+      expect(@credit_card_address.errors.full_messages).to include("Phone is invalid")
+    end
+
     it '郵便番号にハイフンがないと登録できない' do
       @credit_card_address.post_number = '7777777'
       @credit_card_address.valid?
@@ -75,11 +93,18 @@ RSpec.describe CreditCardAddress, type: :model do
         expect(@credit_card_address.errors.full_messages).to include("Phone is invalid")
       end
 
-      it "token が空では登録できないこと" do
-        @credit_card_address.token = nil
+      it "user_idが空では登録できないこと" do
+        @credit_card_address.user_id = nil
         @credit_card_address.valid?
-        expect(@credit_card_address.errors.full_messages).to include("Token can't be blank")
+        expect(@credit_card_address.errors.full_messages).to include("User can't be blank")
       end
+
+      it "item_idが空では登録できないこと" do
+        @credit_card_address.item_id = nil
+        @credit_card_address.valid?
+        expect(@credit_card_address.errors.full_messages).to include("Item can't be blank")
+      end
+
     end
   end
 end

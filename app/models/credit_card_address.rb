@@ -19,5 +19,3 @@ class CreditCardAddress
     Address.create(post_number: post_number, prefecture_id: prefecture_id, city: city, address: address, building: building, phone: phone, credit_card_id: credit_card.id)
   end
 end
-
-# { with: /(0{1}\d{9,10})/ }
