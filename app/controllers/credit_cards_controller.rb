@@ -1,7 +1,8 @@
 class CreditCardsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create, :pay_item]
-
+  before_action :contributor_confirmation
+  before_action :sold_out
 
   def index
     if current_user.id == @item.user.id|| @item.credit_card.present?
@@ -31,6 +32,13 @@ class CreditCardsController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
+  def contributor_confirmation
+    redirect_to root_path if current_user.id == @item.user.id
+  end
+
+  def sold_out
+    redirect_to root_path if @item.order.present?
+  end
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  
