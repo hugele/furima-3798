@@ -1,15 +1,15 @@
 class CreditCardAddress
   include ActiveModel::Model
 
-  attr_accessor :user_id, :item_id, :post_number, :prefecture_id, :city, :address, :building, :phone, :credit_card, :token
+  attr_accessor :user_id, :item_id, :post_number, :prefecture_id, :city, :address, :building, :phone, :token
 
   with_options presence: true do
     validates :token
-    validates :post_number, format: { with: /\d{3}-\d{4}/, message: 'Input correctly' }
+    validates :post_number, format: { with:/\A\d{3}[-]\d{4}\z/, message: 'Input correctly' }
     validates :prefecture_id, numericality: { other_than: 0, message: 'select' }
     validates :city
     validates :address
-    validates :phone, format: { with: /(0{1}\d{9,10})/ }
+    validates :phone, format: { with: /\A\d{10,11}\z/}
     validates :item_id
     validates :user_id
   end

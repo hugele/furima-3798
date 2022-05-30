@@ -1,13 +1,15 @@
 class CreditCardsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:index, :create, :pay_item]
-  before_action :sold_out
+
 
   def index
-    redirect_to root_path if current_user.id == @item.user.id
+    if current_user.id == @item.user.id|| @item.credit_card.present?
+      redirect_to root_path 
+    else
       @credit_card_address = CreditCardAddress.new
   end
-
+ end
   def create
     @credit_card_address = CreditCardAddress.new(credit_card_params)
     if @credit_card_address.valid?
@@ -29,9 +31,6 @@ class CreditCardsController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  def sold_out
-    redirect_to root_path if @item.credit_card.present?
-  end
 
   def pay_item
     Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  

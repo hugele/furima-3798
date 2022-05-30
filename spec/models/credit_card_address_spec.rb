@@ -59,7 +59,6 @@ end
     it '電話番号にハイフンがあると登録できない' do
       @credit_card_address.phone = '000-0000-0000'
       @credit_card_address.valid?
-      # binding.pry
       expect(@credit_card_address.errors.full_messages).to include('Phone is invalid')
     end
 
@@ -84,7 +83,6 @@ end
     it '郵便番号にハイフンがないと登録できない' do
       @credit_card_address.post_number = '7777777'
       @credit_card_address.valid?
-      # binding.pry
       expect(@credit_card_address.errors.full_messages).to include('Post number Input correctly')
      end
       it '電話番号が英数混合では保存できないこと' do
@@ -103,6 +101,11 @@ end
         @credit_card_address.item_id = nil
         @credit_card_address.valid?
         expect(@credit_card_address.errors.full_messages).to include("Item can't be blank")
+      end
+      it "token が空では登録できないこと" do
+        @credit_card_address.token = nil
+        @credit_card_address.valid?
+        expect(@credit_card_address.errors.full_messages).to include("Token can't be blank")
       end
 
     end
