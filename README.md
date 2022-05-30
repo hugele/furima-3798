@@ -71,7 +71,7 @@ has_one    :address
 
 - has_one_attached  :image
 - belongs_to        :user
-  has_one   　　　　 :credit_card
+  has_one           :credit_card
 　belongs_to_active_hash :category
   belongs_to_active_hash :day
   belongs_to_active_hash :derively_fee
