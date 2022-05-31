@@ -29,6 +29,6 @@ class Item < ApplicationRecord
       validates :prefecture_id
       validates :condition_id 
     end
-    validates :price, numericality: { only_integer:true, greater_than_or_equal_to:300, less_than: 9999999, message: 'Out of setting range' }
+    validates :price, numericality: { only_integer:true, greater_than_or_equal_to:300, less_than_or_equal_to: 9999999, message: 'Out of setting range' }
 
 end
